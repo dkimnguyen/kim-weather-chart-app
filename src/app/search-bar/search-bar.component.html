@@ -1,0 +1,9 @@
+<p>
+  search-bar works!
+</p>
+<div>
+  <p>Search</p>
+  <label>City or Zip code</label> <input [(ngModel)]="location.location" type="text" name="cityOrZip" placeholder="Input City or Zip Code">
+  <label>Country</label><input [(ngModel)]="location.country"type="text" name="country" placeholder="Country default to USA">
+  <button (click)="validateLocation(location)">Submit</button>
+</div>
