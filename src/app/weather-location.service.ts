@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class WeatherLocationService {
 
+  //todo create cache store
+
   weatherApi = 'api.openweathermap.org/data/2.5/forecast';
   appId = '&appid=d61ed55b0e5a134db9b88f48e9f3f89d';
   count = '&cnt=5';
+  unit = '&units=imperial'
 
   constructor(private http: HttpClient) { 
   }
@@ -27,10 +30,9 @@ export class WeatherLocationService {
     } else {
       query = 'q';
     }
-    let url = `http://${this.weatherApi}?${query}=${location.location},${location.country}${this.appId}${this.count}`;
-    console.log(url);
-    return url;
+    return`http://${this.weatherApi}?${query}=${location.location},${location.country}${this.appId}${this.count}${this.unit}`;
   }
+
 }
 
 //store successful api gets in a dictionary
