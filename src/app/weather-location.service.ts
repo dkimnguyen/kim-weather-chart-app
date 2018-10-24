@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Location, FormattedForecastData } from './location/location'
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { stringify } from '@angular/compiler/src/util';
 
@@ -25,7 +25,7 @@ export class WeatherLocationService {
     //if value is not in map
     return this.http.get(this.buildForecastUrl(location))
       .pipe(
-        map(this.formatForecastData, location),
+        map(this.formatForecastData),
         catchError(this.handleError('getForecast', [])));
   }
 
@@ -42,12 +42,11 @@ export class WeatherLocationService {
   handleError(error: string, result: any) {
     return (error: any): Observable<any> => {
       console.error(error);
-      return result;
-    }
+      return of(result as any);
+    };
   }
 
   formatForecastData(data: any) {
-    console.log(data);
     let formattedForecastData = [];  
     for (let forecast of data.list) {
       let weather = forecast.weather[0];

@@ -27,9 +27,10 @@ export class SearchBarComponent implements OnInit {
       location.country = this.defaultCountry;
     }
     this.weatherService.getForcast(location).subscribe((data) => {
+      if (data.length === 0) {
+        alert('city was not found');
+      }
       this.forecasts = data;
     });
   }
 }
-
-//if an error is thrown, display error message... pop up?
