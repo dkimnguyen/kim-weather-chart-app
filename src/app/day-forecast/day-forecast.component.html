@@ -1,8 +1,8 @@
 <div>
-  <div>{{forecast.date}}</div>
+  <div>{{forecast.date | date:short}} </div>
   <label>{{forecast.weather}}</label>
   <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png"></div>
   <div>{{forecast.description}}</div>
-  <div>High: {{forecast.maxTemp}}</div>
-  <div>Low: {{forecast.minTemp}}</div>
+  <div>High: {{forecast.maxTemp}}F</div>
+  <div>Low: {{forecast.minTemp}}F</div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '../location/location';
+import { Location, FormattedForecastData } from '../location/location';
 import { WeatherLocationService } from '../weather-location.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { WeatherLocationService } from '../weather-location.service';
 
 export class SearchBarComponent implements OnInit {
   defaultCountry = 'us';
+  city = '';
   location: Location = {
     location: '',
     country: ''
@@ -26,27 +27,9 @@ export class SearchBarComponent implements OnInit {
       location.country = this.defaultCountry;
     }
     this.weatherService.getForcast(location).subscribe((data) => {
-      let formattedForecastData = [];
-      for (let forecast of data.list) {
-        let formatted = this.formatForecastData(forecast);
-        formattedForecastData.push(formatted);
-      }
-      this.forecasts = formattedForecastData;
+      this.forecasts = data;
     });
   }
-
-  formatForecastData(forecast: any) {
-    let weather = forecast.weather[0];
-    return {
-      minTemp: forecast.main.temp_min,
-      maxTemp: forecast.main.temp_max,
-      weather: weather.main,
-      weatherDescription: weather.description,
-      icon: weather.icon,
-      date: forecast.dt_txt,
-    };
-  }
-
 }
 
 //if an error is thrown, display error message... pop up?

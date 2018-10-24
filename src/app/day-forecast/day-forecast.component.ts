@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormattedForecastData } from '../location/location';
 
 @Component({
   selector: 'app-day-forecast',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./day-forecast.component.scss']
 })
 export class DayForecastComponent implements OnInit {
-  @Input() forecast: any;
+  @Input() forecast: FormattedForecastData;
 
   constructor() { }
 

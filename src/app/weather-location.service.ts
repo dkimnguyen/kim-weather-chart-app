@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Location } from './location/location'
+import { Location, FormattedForecastData } from './location/location'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { stringify } from '@angular/compiler/src/util';
 
 
 @Injectable({
@@ -20,7 +22,11 @@ export class WeatherLocationService {
   }
 
   getForcast(location: Location): Observable<any> {
-    return this.http.get(this.buildForecastUrl(location));
+    //if value is not in map
+    return this.http.get(this.buildForecastUrl(location))
+      .pipe(
+        map(this.formatForecastData, location),
+        catchError(this.handleError('getForecast', [])));
   }
 
   buildForecastUrl(location: Location): string {
@@ -33,8 +39,29 @@ export class WeatherLocationService {
     return`http://${this.weatherApi}?${query}=${location.location},${location.country}${this.appId}${this.count}${this.unit}`;
   }
 
+  handleError(error: string, result: any) {
+    return (error: any): Observable<any> => {
+      console.error(error);
+      return result;
+    }
+  }
+
+  formatForecastData(data: any) {
+    console.log(data);
+    let formattedForecastData = [];  
+    for (let forecast of data.list) {
+      let weather = forecast.weather[0];
+      let formatted = {
+        minTemp: forecast.main.temp_min,
+        maxTemp: forecast.main.temp_max,
+        weather: weather.main,
+        weatherDescription: weather.description,
+        icon: weather.icon,
+        date: forecast.dt_txt,
+      };
+      formattedForecastData.push(formatted);
+    }
+    return formattedForecastData;
+  }
+
 }
-
-//store successful api gets in a dictionary
-
-//function to check the cache if the location was already called

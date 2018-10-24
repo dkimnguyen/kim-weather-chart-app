@@ -3,3 +3,12 @@ export class Location {
     country: string;
     data?: any;
 }
+
+export interface FormattedForecastData {
+    minTemp: number;
+    maxTemp: number;
+    weather: string;
+    weatherDescription: string;
+    icon: string;
+    date: string;
+}
