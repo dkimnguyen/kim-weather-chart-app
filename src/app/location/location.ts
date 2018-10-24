@@ -10,5 +10,5 @@ export interface FormattedForecastData {
     weather: string;
     weatherDescription: string;
     icon: string;
-    date: string;
+    date: Date;
 }

@@ -30,7 +30,8 @@ export class SearchBarComponent implements OnInit {
       if (data.length === 0) {
         alert('city was not found');
       }
-      this.forecasts = data;
+      this.city = data.city;
+      this.forecasts = data.forecasts;
     });
   }
 }

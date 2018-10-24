@@ -35,7 +35,7 @@ export class WeatherLocationService {
     } else {
       query = 'q';
     }
-    return`http://${this.weatherApi}?${query}=${location.location},${location.country}${this.appId}${this.count}${this.unit}`;
+    return`http://${this.weatherApi}?${query}=${location.location},${location.country}${this.appId}${this.unit}`;
   }
 
   handleError(error: string, result: any) {
@@ -45,8 +45,9 @@ export class WeatherLocationService {
     };
   }
 
-  formatForecastData(data: any) {
-    let formattedForecastData = [];  
+  formatForecastData(data: any): { city: string, forecasts: FormattedForecastData[]} {
+    let formattedForecastData = [];
+    let city = data.city.name;  
     for (let forecast of data.list) {
       let weather = forecast.weather[0];
       let formatted = {
@@ -55,11 +56,14 @@ export class WeatherLocationService {
         weather: weather.main,
         weatherDescription: weather.description,
         icon: weather.icon,
-        date: forecast.dt_txt,
+        date: new Date(forecast.dt_txt),
       };
       formattedForecastData.push(formatted);
     }
-    return formattedForecastData;
+    return {
+      city: city,
+      forecasts: formattedForecastData
+    };
   }
 
 }

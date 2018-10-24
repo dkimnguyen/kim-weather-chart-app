@@ -1,8 +1,9 @@
-<div class="col border border-primary weather">
-  <div class="border-bottom">{{forecast.date | date:short}} </div>
+<div class="border border-primary weather">
+  <div>{{ forecast.date | date}} </div>
+  <div class="border-bottom">{{ forecast.date | date:'shortTime'}} </div>
   <label>{{forecast.weather}}</label>
   <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png"></div>
   <div>{{forecast.description}}</div>
-  <div>High: {{forecast.maxTemp}}F</div>
+  <div class="border-top">High: {{forecast.maxTemp}}F</div>
   <div>Low: {{forecast.minTemp}}F</div>
 </div>
