@@ -13,7 +13,6 @@ export class WeatherLocationService {
 
   weatherApi = 'api.openweathermap.org/data/2.5/forecast';
   appId = '&appid=d61ed55b0e5a134db9b88f48e9f3f89d';
-  count = '&cnt=5';
   unit = '&units=imperial'
 
   constructor(private http: HttpClient) { 
