@@ -10,7 +10,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class WeatherLocationService {
 
   //todo create cache store
-  //todo get the first instance of the days data
 
   weatherApi = 'api.openweathermap.org/data/2.5/forecast';
   appId = '&appid=d61ed55b0e5a134db9b88f48e9f3f89d';
@@ -21,7 +20,7 @@ export class WeatherLocationService {
   }
 
   getForcast(location: Location): Observable<any> {
-    //if value is not in map
+    //todo check cache store and if key of city or zip code is found, return that data
     return this.http.get(this.buildForecastUrl(location))
       .pipe(
         map(this.formatForecastData),
@@ -60,6 +59,8 @@ export class WeatherLocationService {
       };
       formattedForecastData.push(formatted);
     }
+    //todo set mapped data into cache by city name
+    //todo set mapped data into cache by zip code
     return {
       city: city,
       forecasts: formattedForecastData
