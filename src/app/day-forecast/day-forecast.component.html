@@ -1,4 +1,8 @@
 <div>
-  day-forecast works!
-  <p>{{forecast.weather[0].main}}</p>
+  <div>{{forecast.date}}</div>
+  <label>{{forecast.weather}}</label>
+  <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png"></div>
+  <div>{{forecast.description}}</div>
+  <div>High: {{forecast.maxTemp}}</div>
+  <div>Low: {{forecast.minTemp}}</div>
 </div>

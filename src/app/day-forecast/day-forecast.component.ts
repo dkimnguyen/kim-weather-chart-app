@@ -11,7 +11,6 @@ export class DayForecastComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.forecast);
   }
 
 }
