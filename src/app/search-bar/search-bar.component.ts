@@ -15,7 +15,7 @@ export class SearchBarComponent implements OnInit {
     location: '',
     country: ''
   };
-  forecasts: any;
+  forecasts: FormattedForecastData[];
   
   constructor(private weatherService: WeatherLocationService) { }
 
@@ -26,12 +26,16 @@ export class SearchBarComponent implements OnInit {
     if (location.country === '') {
       location.country = this.defaultCountry;
     }
+    
     this.weatherService.getForcast(location).subscribe((data) => {
+      
       if (data.length === 0) {
         alert('city was not found');
       }
+
       this.city = data.city;
       this.forecasts = data.forecasts;
+
     });
   }
 }

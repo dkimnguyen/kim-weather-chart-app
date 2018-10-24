@@ -1,10 +1,11 @@
 <div>
-  <p>Search</p>
-  <label>City or Zip code</label><input [(ngModel)]="location.location" type="text" name="cityOrZip" placeholder="Input City or Zip Code">
-  <label>Country</label><input [(ngModel)]="location.country"type="text" name="country" placeholder="Country default to USA">
+  <label class="label">City or Zip code</label>
+  <input [(ngModel)]="location.location"  class="input" type="text" name="cityOrZip" placeholder="Input City or Zip Code">
+  <label class="label">Country</label>
+  <input [(ngModel)]="location.country" class="input" type="text" name="country" placeholder="Country default to US">
   <button (click)="validateLocation(location)">Submit</button>
-  <div *ngIf="city">
-    Five day forecast by 3 hour increment for {{city}}
+  <div *ngIf="city" style="text-align: center">
+    <label> 5 day forecast by 3 hour increment for {{city}} </label>
   </div>
   <div class="container-fluid">
     <div class="row">
