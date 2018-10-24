@@ -14,6 +14,7 @@ export class SearchBarComponent implements OnInit {
     location: '',
     country: ''
   };
+  forecasts: any;
   
   constructor(private weatherService: WeatherLocationService) { }
 
@@ -26,9 +27,9 @@ export class SearchBarComponent implements OnInit {
     }
     this.weatherService.getForcast(location).subscribe((data) => {
       console.log(data);
+      this.forecasts = data.list;
     });
   }
-
 }
 
 //if an error is thrown, display error message... pop up?

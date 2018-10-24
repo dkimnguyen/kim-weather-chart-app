@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-day-forecast',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./day-forecast.component.scss']
 })
 export class DayForecastComponent implements OnInit {
+  @Input() forecast: any;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.forecast);
   }
 
 }
