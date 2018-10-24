@@ -3,8 +3,6 @@ import { Location, FormattedForecastData } from './location/location'
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { stringify } from '@angular/compiler/src/util';
-
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +10,7 @@ import { stringify } from '@angular/compiler/src/util';
 export class WeatherLocationService {
 
   //todo create cache store
+  //todo get the first instance of the days data
 
   weatherApi = 'api.openweathermap.org/data/2.5/forecast';
   appId = '&appid=d61ed55b0e5a134db9b88f48e9f3f89d';

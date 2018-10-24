@@ -1,5 +1,5 @@
-<div>
-  <div>{{forecast.date | date:short}} </div>
+<div class="col border border-primary weather">
+  <div class="border-bottom">{{forecast.date | date:short}} </div>
   <label>{{forecast.weather}}</label>
   <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png"></div>
   <div>{{forecast.description}}</div>
